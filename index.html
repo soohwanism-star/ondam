@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171713">
+<title>ONDAM — 온담 | 따뜻함이 머무는 공간</title>
+<meta name="description" content="온담. 온기를 담은 휴식, 감각적인 찜질 라운지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#f4efe5;--muted:#b8b1a4;--gold:#c8a879;--bg:#171713;--line:rgba(244,239,229,.2)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans","Noto Serif KR",serif;letter-spacing:-.02em}a{color:inherit;text-decoration:none}button{font:inherit}
+.nav{position:fixed;z-index:20;top:0;left:0;width:100%;padding:25px 5.5%;display:flex;align-items:center;justify-content:space-between;transition:.35s;background:linear-gradient(180deg,rgba(0,0,0,.42),transparent)}
+.nav.scrolled{background:rgba(23,23,19,.9);backdrop-filter:blur(16px);padding:17px 5.5%;border-bottom:1px solid var(--line)}
+.brand{font-size:22px;letter-spacing:.28em;font-weight:500}.brand small{display:block;font-size:9px;letter-spacing:.35em;color:var(--gold);margin-top:4px}
+.navlinks{display:flex;gap:34px;font-size:12px;letter-spacing:.12em;color:#eee8dd}.navlinks a{opacity:.82;transition:.2s}.navlinks a:hover{opacity:1;color:var(--gold)}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--ink);padding:8px 12px}
+.hero{height:100svh;min-height:650px;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#28251f}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,12,10,.72),rgba(12,12,10,.08)),linear-gradient(0deg,rgba(12,12,10,.62),transparent 55%),url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=90') center/cover;transform:scale(1.02);animation:slowzoom 18s ease-in-out infinite alternate}
+@keyframes slowzoom{to{transform:scale(1.09)}}
+.hero-content{position:relative;z-index:2;padding:0 8.5% 10.5%;max-width:1000px}
+.eyebrow{font-size:11px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:32px;height:1px;background:var(--gold)}
+h1{font-family:"Noto Serif KR",serif;font-weight:400;font-size:clamp(44px,7.6vw,100px);line-height:1.22;letter-spacing:-.065em;margin:28px 0}
+.hero p{font-size:15px;line-height:1.9;color:#e2dbcf;max-width:450px}
+.hero-bottom{display:flex;align-items:center;gap:22px;margin-top:42px}
+.cta{display:inline-flex;align-items:center;gap:24px;padding:15px 20px;border:1px solid rgba(244,239,229,.55);font-size:11px;letter-spacing:.13em;transition:.3s}
+.cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.scroll{font-size:10px;letter-spacing:.2em;color:#c8c0b4}
+.section{padding:130px 8.5%}.section-label{color:var(--gold);font-size:11px;letter-spacing:.25em;text-transform:uppercase}
+.section h2{font-family:"Noto Serif KR",serif;font-weight:400;font-size:clamp(32px,4.8vw,62px);line-height:1.35;letter-spacing:-.06em;margin:22px 0 28px}
+.lead{color:#bdb6aa;line-height:2;font-size:14px;max-width:560px}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}
+.intro-image{height:570px;background:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85') center/cover;position:relative}
+.intro-image:after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.3)}
+.intro-copy{padding:30px 0}.intro-copy .cta{margin-top:30px}
+.quote{padding:110px 8%;text-align:center;background:#22221c;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote p{font-family:"Noto Serif KR",serif;font-size:clamp(25px,4vw,48px);line-height:1.7;max-width:900px;margin:25px auto 0;letter-spacing:-.05em}
+.experience{padding-bottom:120px}.experience-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:48px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{min-width:0}.card-img{height:420px;background-size:cover;background-position:center;transition:transform .8s;overflow:hidden}.card:hover .card-img{transform:scale(1.025)}
+.card:nth-child(1) .card-img{background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85')}
+.card:nth-child(2) .card-img{background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85')}
+.card:nth-child(3) .card-img{background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85')}
+.card-meta{display:flex;justify-content:space-between;align-items:center;padding:20px 2px;border-bottom:1px solid var(--line)}
+.card-meta span:first-child{font-family:"Noto Serif KR",serif;font-size:20px}.card-meta span:last-child{font-size:10px;color:var(--gold);letter-spacing:.15em}
+.banner{height:65vh;min-height:450px;position:relative;background:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2200&q=90') center/cover;display:flex;align-items:center;justify-content:center;text-align:center}
+.banner:before{content:"";position:absolute;inset:0;background:rgba(13,13,10,.45)}.banner-content{position:relative;padding:30px}.banner h2{font-size:clamp(35px,5vw,65px);font-family:"Noto Serif KR",serif;font-weight:400;line-height:1.4;margin:20px 0}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:8%;padding:120px 8.5%}.visit h2{font-size:50px}.visit-info{border-top:1px solid var(--line);margin-top:25px}.row{display:flex;justify-content:space-between;padding:19px 0;border-bottom:1px solid var(--line);font-size:13px}.row span:first-child{color:var(--muted)}.visit .cta{margin-top:32px}
+footer{padding:35px 5.5%;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:#8e887d;font-size:10px;letter-spacing:.12em}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}
+
+/* ONDAM custom cursor */
+@media (pointer:fine){
+ body, a, button, input, textarea {cursor:none}
+ .cursor-dot,.cursor-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);border-radius:50%}
+ .cursor-dot{display:none!important}
+ .cursor-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.9);transition:width .25s,height .25s,background .25s,border-color .25s;mix-blend-mode: difference}
+ .cursor-ring.hover{width:58px;height:58px;background:rgba(255,255,255,.10);border-color:#fff}
+ .cursor-ring.text{width:82px;height:82px;background:#fff;color:#171713;border:0}
+ .cursor-ring.text:after{content:"VIEW";position:absolute;inset:0;display:grid;place-items:center;font-size:9px;letter-spacing:.15em}
+}
+.cta{cursor:pointer;background:transparent;color:inherit}
+.inquiry-modal{position:fixed;inset:0;z-index:1000;background:rgba(8,8,7,.72);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
+.inquiry-modal.open{display:flex}
+.modal-panel{width:min(620px,100%);max-height:90vh;overflow:auto;background:#f1eadf;color:#24221d;padding:clamp(24px,5vw,48px);position:relative}
+.modal-close{position:absolute;right:22px;top:18px;border:0;background:none;font-size:28px;color:#24221d;cursor:pointer}
+.modal-kicker{font-size:10px;letter-spacing:.22em;color:#9c7950}
+.modal-panel h2{font:400 clamp(30px,5vw,46px) "Noto Serif KR",serif;margin:12px 0 8px}
+.modal-desc{font-size:13px;color:#71695e;line-height:1.8;margin-bottom:25px}
+.inquiry-form{display:grid;gap:15px}
+.inquiry-form label{display:grid;gap:7px;font-size:11px;letter-spacing:.08em}
+.inquiry-form input,.inquiry-form textarea{width:100%;border:0;border-bottom:1px solid #c8bdae;background:transparent;padding:12px 2px;color:#24221d;font:14px "DM Sans","Noto Serif KR",serif;outline:none;border-radius:0}
+.inquiry-form input:focus,.inquiry-form textarea:focus{border-color:#8b6b42}
+.inquiry-form textarea{min-height:100px;resize:vertical}
+.inquiry-form .submit{margin-top:8px;background:#24221d;color:#f1eadf;border:1px solid #24221d;padding:16px;letter-spacing:.13em;font-size:11px;cursor:pointer}
+.form-status{font-size:12px;line-height:1.7;color:#6a5b46;min-height:20px}
+
+@media(max-width:800px){.navlinks{display:none;position:absolute;top:75px;left:0;width:100%;padding:24px 6%;background:#171713;flex-direction:column;gap:20px}.navlinks.open{display:flex}.menu{display:block}.hero{min-height:600px}.hero-content{padding:0 7% 17%}.section{padding:85px 7%}.intro,.visit{grid-template-columns:1fr;gap:35px}.intro-image{height:400px;order:2}.cards{grid-template-columns:1fr;gap:35px}.card-img{height:360px}.experience-head{display:block}.experience-head .lead{margin-top:20px}.quote{padding:80px 7%}.banner{min-height:400px}.visit{padding:85px 7%}.visit h2{font-size:40px}footer{gap:15px;flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#top">ONDAM<small>온기를 담은 공간</small></a>
+  <nav class="navlinks" id="links">
+    <a href="#story">온담의 이야기</a><a href="#space">공간</a><a href="#experience">경험</a><a href="#visit">방문 안내</a>
+  </nav>
+  <button class="menu" id="menu" aria-label="메뉴 열기">MENU</button>
+</header>
+<main>
+<section class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="따뜻한 조명과 편안한 라운지"></div>
+  <div class="hero-content">
+    <div class="eyebrow">A WARM PLACE TO REST</div>
+    <h1>온기를 담고,<br>쉼을 채우다.</h1>
+    <p>바쁜 하루의 끝, 잠시 모든 것을 내려놓는 시간.<br>온담은 몸과 마음이 편안해지는 따뜻한 휴식 공간입니다.</p>
+    <div class="hero-bottom"><a class="cta" href="#story">온담을 만나보세요 <span>↗</span></a><span class="scroll">SCROLL TO DISCOVER ↓</span></div>
+  </div>
+</section>
+<section class="section intro reveal" id="story">
+  <div class="intro-image" role="img" aria-label="온담의 차분한 인테리어"></div>
+  <div class="intro-copy">
+    <div class="section-label">THE ONDAM STORY</div>
+    <h2>따뜻함이 머무는<br>작은 여유.</h2>
+    <p class="lead">온담은 ‘온기를 담다’라는 마음에서 시작합니다. 부드러운 빛, 편안한 온도, 차분한 공간. 일상의 속도를 잠시 늦추고 나만의 휴식을 경험해 보세요.</p>
+    <a class="cta" href="#space">공간 둘러보기 <span>↗</span></a>
+  </div>
+</section>
+<section class="quote reveal"><div class="section-label">A MOMENT FOR YOURSELF</div><p>“아무것도 하지 않아도<br>충분히 좋은 시간이 있습니다.”</p></section>
+<section class="section experience reveal" id="space">
+  <div class="experience-head"><div><div class="section-label">OUR SPACE</div><h2>감각으로 기억되는<br>휴식의 공간</h2></div><p class="lead">온담의 공간은 따뜻한 소재와 은은한 빛으로<br>편안한 순간을 완성합니다.</p></div>
+  <div class="cards" id="experience">
+    <article class="card"><div class="card-img" role="img" aria-label="라운지"></div><div class="card-meta"><span>온담 라운지</span><span>01 / LOUNGE</span></div></article>
+    <article class="card"><div class="card-img" role="img" aria-label="따뜻한 공간"></div><div class="card-meta"><span>온기의 공간</span><span>02 / WARMTH</span></div></article>
+    <article class="card"><div class="card-img" role="img" aria-label="편안한 휴식"></div><div class="card-meta"><span>나만의 휴식</span><span>03 / REST</span></div></article>
+  </div>
+</section>
+<section class="banner reveal"><div class="banner-content"><div class="section-label">SLOW DOWN, STAY WARM</div><h2>오늘의 나에게<br>따뜻한 쉼을.</h2><a class="cta" href="#visit">온담 방문 안내 <span>↗</span></a></div></section>
+<section class="visit reveal" id="visit">
+  <div><div class="section-label">COME TO ONDAM</div><h2>당신의 휴식이<br>시작되는 곳.</h2><p class="lead">온담에서 따뜻한 시간을 만나보세요.</p></div>
+  <div><div class="section-label">VISIT INFORMATION</div><div class="visit-info">
+    <div class="row"><span>주소</span><span>학교 프로젝트용 주소 입력</span></div>
+    <div class="row"><span>운영 시간</span><span>운영 시간 입력</span></div>
+    <div class="row"><span>문의</span><span>연락처 입력</span></div>
+  </div><button class="cta inquiry-open" type="button">문의하기 <span>↗</span></button></div>
+</section>
+</main>
+<footer><span>© ONDAM — 온기를 담은 공간</span><span>DESIGNED FOR A MOMENT OF REST</span><a href="#top">BACK TO TOP ↑</a></footer>
+
+<div class="inquiry-modal" id="inquiryModal" aria-hidden="true">
+ <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button class="modal-close" type="button" aria-label="닫기" id="modalClose">×</button>
+  <div class="modal-kicker">ONDAM · CONTACT</div>
+  <h2 id="modalTitle">온담에 문의하기</h2>
+  <p class="modal-desc">온담에 대한 문의나 제안 사항을 남겨주세요.<br>학교 프로젝트용 문의 접수 화면입니다.</p>
+  <form class="inquiry-form" id="inquiryForm">
+   <label>이름<input name="name" autocomplete="name" required placeholder="이름을 입력해 주세요"></label>
+   <label>연락처 또는 이메일<input name="contact" required placeholder="회신받을 연락처"></label>
+   <label>문의 내용<textarea name="message" required placeholder="문의 내용을 입력해 주세요"></textarea></label>
+   <button class="submit" type="submit">문의 내용 확인하기 ↗</button>
+   <div class="form-status" id="formStatus" aria-live="polite"></div>
+  </form>
+ </div>
+</div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<script>
+const nav=document.getElementById('nav'), menu=document.getElementById('menu'), links=document.getElementById('links');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
+menu.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Inquiry modal: validate and show confirmation (demo front-end; no server transmission)
+const inquiryModal=document.getElementById('inquiryModal');
+const openInquiry=()=>{inquiryModal.classList.add('open');inquiryModal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>inquiryModal.querySelector('input').focus(),80)};
+const closeInquiry=()=>{inquiryModal.classList.remove('open');inquiryModal.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+document.querySelectorAll('.inquiry-open').forEach(b=>b.addEventListener('click',openInquiry));
+document.getElementById('modalClose').addEventListener('click',closeInquiry);
+inquiryModal.addEventListener('click',e=>{if(e.target===inquiryModal)closeInquiry()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInquiry()});
+document.getElementById('inquiryForm').addEventListener('submit',e=>{
+ e.preventDefault();const data=new FormData(e.currentTarget);
+ const name=String(data.get('name')).trim(),contact=String(data.get('contact')).trim(),message=String(data.get('message')).trim();
+ if(!name||!contact||!message)return;
+ document.getElementById('formStatus').textContent='입력한 문의 내용이 확인되었습니다. 학교 발표용 데모에서는 서버 접수 대신 화면에서 확인 처리됩니다.';
+ e.currentTarget.querySelector('.submit').textContent='확인 완료 ✓';
+});
+// Rolls-Royce-inspired minimal cursor: ring follows smoothly, grows on interactive elements
+if(matchMedia('(pointer:fine)').matches){
+ const ring=document.getElementById('cursorRing');
+ let x=innerWidth/2,y=innerHeight/2,rx=x,ry=y;
+ addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY});
+ const moveRing=()=>{rx+=(x-rx)*.17;ry+=(y-ry)*.17;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(moveRing)};moveRing();
+ document.querySelectorAll('a,button,.card,.intro-image').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+ });
+}
+
+</script>
+</body>
+</html>
