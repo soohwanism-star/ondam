@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,28 +17,31 @@ body{
     cursor:none;
 }
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-
-:root{
-    --gold:#c8a879;
-    --cream:#f5f0e8;
-    --dark:#171713;
-}
+:root{--gold:#c8a879}
 
 /* CUSTOM CURSOR */
 .cursor{
     position:fixed;
-    width:34px;height:34px;
+    width:34px;
+    height:34px;
     border:1px solid white;
     border-radius:50%;
     pointer-events:none;
     z-index:9999;
     transform:translate(-50%,-50%);
-    transition:width .3s,height .3s;
+    opacity:0;
+    transition:width .3s,height .3s,opacity .25s;
 }
+.cursor.visible{opacity:1}
 .cursor.hover{
-    width:60px;height:60px;
+    width:60px;
+    height:60px;
     background:rgba(255,255,255,.08);
+}
+
+@media(max-width:800px){
+    body{cursor:auto}
+    .cursor{display:none}
 }
 
 /* HEADER */
@@ -58,6 +60,7 @@ header.scrolled{
     background:rgba(23,23,19,.92);
     backdrop-filter:blur(15px);
     padding:18px 6%;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 .logo{
     font-size:22px;
@@ -70,14 +73,20 @@ header.scrolled{
     color:var(--gold);
     margin-top:5px;
 }
-nav{display:flex;gap:35px}
+nav{
+    display:flex;
+    gap:35px;
+}
 nav a{
     font-size:11px;
     letter-spacing:.15em;
     opacity:.8;
     transition:.3s;
 }
-nav a:hover{opacity:1;color:var(--gold)}
+nav a:hover{
+    opacity:1;
+    color:var(--gold);
+}
 
 /* HERO */
 .hero{
@@ -136,13 +145,12 @@ h1{
     transition:.3s;
 }
 .hero-button:hover{
-    background:white;color:#171713;
+    background:white;
+    color:#171713;
 }
 
-/* INTRO */
-.section{
-    padding:130px 9%;
-}
+/* SECTIONS */
+.section{padding:130px 9%}
 .label{
     color:var(--gold);
     font-size:10px;
@@ -161,6 +169,8 @@ h2{
     font-size:14px;
     line-height:2.1;
 }
+
+/* INTRO */
 .intro{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -174,9 +184,7 @@ h2{
 .intro-text{max-width:500px}
 
 /* EXPERIENCE */
-.experience{
-    background:#202019;
-}
+.experience{background:#202019}
 .experience-header{
     display:flex;
     justify-content:space-between;
@@ -188,13 +196,13 @@ h2{
     grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
+.card{overflow:hidden}
 .card-image{
     height:430px;
     background-size:cover;
     background-position:center;
     transition:.7s;
 }
-.card{overflow:hidden}
 .card:hover .card-image{transform:scale(1.04)}
 .card:nth-child(1) .card-image{
     background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85');
@@ -220,7 +228,7 @@ h2{
     font-size:10px;
 }
 
-/* BRAND STATEMENT */
+/* STATEMENT */
 .statement{
     padding:150px 8%;
     text-align:center;
@@ -229,7 +237,9 @@ h2{
     url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2200&q=90')
     center/cover;
 }
-.statement h2{font-size:clamp(35px,5vw,70px)}
+.statement h2{
+    font-size:clamp(35px,5vw,70px);
+}
 
 /* INSTAGRAM */
 .instagram{
@@ -250,7 +260,8 @@ h2{
     transition:.3s;
 }
 .insta-button:hover{
-    background:white;color:#171713;
+    background:white;
+    color:#171713;
 }
 
 /* FOOTER */
@@ -275,10 +286,10 @@ footer{
     transform:none;
 }
 
+/* MOBILE */
 @media(max-width:800px){
-    body{cursor:auto}
-    .cursor{display:none}
     header{padding:20px 6%}
+    header.scrolled{padding:15px 6%}
     nav{gap:15px}
     nav a{font-size:9px}
     .hero-content{padding:0 7% 18%}
@@ -437,32 +448,62 @@ const cursor=document.getElementById('cursor');
 const header=document.getElementById('header');
 
 if(matchMedia('(pointer:fine)').matches){
-    let x=0,y=0,rx=0,ry=0;
 
+    let x=0,y=0,rx=0,ry=0;
+    let hideTimer;
+
+    // 마우스 이동 시 커서 표시
     window.addEventListener('mousemove',e=>{
         x=e.clientX;
         y=e.clientY;
+
+        cursor.classList.add('visible');
+
+        clearTimeout(hideTimer);
+
+        // 1.4초 동안 움직이지 않으면 사라짐
+        hideTimer=setTimeout(()=>{
+            cursor.classList.remove('visible');
+        },1400);
     });
 
+    // 브라우저 영역을 벗어나면 숨김
+    window.addEventListener('mouseout',e=>{
+        if(!e.relatedTarget){
+            cursor.classList.remove('visible');
+        }
+    });
+
+    // 부드러운 커서 이동
     function animate(){
         rx+=(x-rx)*.18;
         ry+=(y-ry)*.18;
+
         cursor.style.left=rx+'px';
         cursor.style.top=ry+'px';
+
         requestAnimationFrame(animate);
     }
     animate();
 
+    // 링크 위에서 커서 확대
     document.querySelectorAll('a,.card').forEach(el=>{
-        el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
-        el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+        el.addEventListener('mouseenter',()=>{
+            cursor.classList.add('hover');
+        });
+
+        el.addEventListener('mouseleave',()=>{
+            cursor.classList.remove('hover');
+        });
     });
 }
 
+// 헤더 스크롤 효과
 window.addEventListener('scroll',()=>{
     header.classList.toggle('scrolled',window.scrollY>40);
 });
 
+// 섹션 등장 애니메이션
 const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -472,9 +513,10 @@ const observer=new IntersectionObserver(entries=>{
     });
 },{threshold:.15});
 
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el=>{
+    observer.observe(el);
+});
 </script>
 
 </body>
 </html>
-```
